@@ -128,7 +128,7 @@ export const ContactSection = () => {
                   <Github className="h-6 w-6 text-white" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/rushela-ekanayaka-357072345"
+                  href="www.linkedin.com/in/rushela-ekanayaka-357072345"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors"
