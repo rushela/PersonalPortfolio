@@ -22,9 +22,12 @@ export const HeroSection = () => {
                 </a>
               </button>
               <a href="https://www.linkedin.com/in/rushela-ekanayaka-357072345" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition-colors flex items-center">
-                Profile
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <span className="flex items-center">
+                  Profile
+                  <Linkedin className="ml-2 h-4 w-4" />
+                </span>
               </a>
+                
               <a href="/assets/rushela-cv.pdf" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-indigo-600 text-indigo-600 font-medium rounded-md hover:bg-indigo-50 transition-colors flex items-center">
                 Download CV
                 <Download className="ml-2 h-4 w-4" />
