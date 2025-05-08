@@ -1,4 +1,3 @@
-import React from 'react';
 import { Brain, Users, MessageSquare } from 'lucide-react';
 
 export const AboutSection = () => {
@@ -29,7 +28,7 @@ export const AboutSection = () => {
               solutions.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="p-2 bg-indigo-100 rounded-full mr-4">
                     <Brain className="h-6 w-6 text-indigo-600" />
@@ -41,7 +40,7 @@ export const AboutSection = () => {
                   skills.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="p-2 bg-indigo-100 rounded-full mr-4">
                     <Users className="h-6 w-6 text-indigo-600" />
@@ -53,18 +52,15 @@ export const AboutSection = () => {
                   environments.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="p-2 bg-indigo-100 rounded-full mr-4">
                     <MessageSquare className="h-6 w-6 text-indigo-600" />
                   </div>
-                  <h3 className="font-semibold text-lg">
-                    Effective Communication
-                  </h3>
+                  <h3 className="font-semibold text-lg">Communication</h3>
                 </div>
                 <p className="text-gray-600">
-                  Clear communicator with technical and non-technical
-                  stakeholders.
+                  Effective communicator with strong presentation and writing skills.
                 </p>
               </div>
             </div>

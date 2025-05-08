@@ -19,7 +19,7 @@ export const ProjectsSection = () => {
           Academic Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => <div key={index} className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+          {projects.map((project, index) => <div key={index} className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300 ease-in-out group hover:shadow-2xl hover:-translate-y-2 hover:scale-105">
               <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-100 relative overflow-hidden">
                 {index === 0 ? (
                   <img 
@@ -57,7 +57,7 @@ export const ProjectsSection = () => {
                         index === 2 ? "https://github.com/rushela/smart-bin-system" : "#"} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-colors"
+                  className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-all duration-300 ease-in-out"
                 >
                   View Details
                   <ArrowRight className="ml-1 h-4 w-4" />
@@ -66,7 +66,7 @@ export const ProjectsSection = () => {
             </div>)}
         </div>
         <div className="mt-12 text-center">
-          <a href="https://github.com/rushela" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-md transition-colors">
+          <a href="https://github.com/rushela" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-md transition-all duration-300 ease-in-out">
             <Github className="mr-2 h-5 w-5" />
             See All on GitHub
           </a>

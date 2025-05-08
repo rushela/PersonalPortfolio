@@ -1,4 +1,3 @@
-import React from 'react';
 import { Phone, Mail, Github, Linkedin } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 
@@ -97,7 +96,7 @@ export const ContactSection = () => {
             )}
           </div>
 
-          {/* contact info column (unchanged) :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1} */}
+          {/* contact info column (unchanged) */}
           <div className="w-full md:w-1/2 md:pl-12 flex flex-col justify-center">
             <div className="space-y-8">
               <div className="flex items-start">
@@ -128,7 +127,7 @@ export const ContactSection = () => {
                   <Github className="h-6 w-6 text-white" />
                 </a>
                 <a
-                  href="www.linkedin.com/in/rushela-ekanayaka-357072345"
+                  href="https://www.linkedin.com/in/rushela-ekanayaka-357072345"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors"

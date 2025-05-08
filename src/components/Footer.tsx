@@ -1,4 +1,3 @@
-import React from 'react';
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="w-full py-8 bg-gray-900 text-gray-400 border-t border-gray-800">
