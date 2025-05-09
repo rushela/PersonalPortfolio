@@ -285,7 +285,7 @@ export const ProjectsSection = () => {
                             activeTab === 'academic' && index === 3 ? "https://github.com/rushela/PET-Care-System" :
                             activeTab === 'academic' && index === 4 ? "https://github.com/rushela/team-collaboration-project" :
                             activeTab === 'academic' && index === 5 ? "https://github.com/rushela/Rental-System" : 
-                            activeTab === 'academic' && index === 6 ? "https://github.com/rushela/Rental-System" : "#"} 
+                            activeTab === 'academic' && index === 6 ? "https://github.com/rushela/FinBot" : "#"} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-all duration-300 ease-in-out"
