@@ -26,6 +26,9 @@ export const ProjectsSection = () => {
   },{
     title: 'Rental-System',
     technologies: 'Java, JDBC, Servlet, JSP, HTML, CSS, JavaScript'
+  },{
+    title: 'Financial Tracker',
+    technologies: 'Kotlin, SQLite, ORM (Room Database), Android’s Notification Manager'
   }];
 
   const clientProjects = [{
@@ -214,7 +217,7 @@ export const ProjectsSection = () => {
                       alt="TeamSync Project" 
                       className="w-full h-full object-cover"
                     />
-                  ): (
+                  ): activeTab === 'academic' && index === 5 ?(
                     <motion.img 
                       initial={{ scale: 1.1 }}
                       animate={{ scale: 1 }}
@@ -223,7 +226,14 @@ export const ProjectsSection = () => {
                       alt="Smart Bin System Project" 
                       className="w-full h-full object-cover"
                     />
-                  )}
+                  ):<motion.img 
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  src="/assets/projects/fapp.png" 
+                  alt="Smart Bin System Project" 
+                  className="w-full h-full object-cover"
+                />}
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -274,7 +284,8 @@ export const ProjectsSection = () => {
                             activeTab === 'academic' && index === 2 ? "https://github.com/rushela/EchoTracking-with-SmartBin" :
                             activeTab === 'academic' && index === 3 ? "https://github.com/rushela/PET-Care-System" :
                             activeTab === 'academic' && index === 4 ? "https://github.com/rushela/team-collaboration-project" :
-                            activeTab === 'academic' && index === 5 ? "https://github.com/rushela/Rental-System" : "#"} 
+                            activeTab === 'academic' && index === 5 ? "https://github.com/rushela/Rental-System" : 
+                            activeTab === 'academic' && index === 6 ? "https://github.com/rushela/Rental-System" : "#"} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-all duration-300 ease-in-out"
