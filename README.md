@@ -1,6 +1,10 @@
 # Personal Portfolio
 
 This is my personal portfolio website, built with React, TypeScript, Vite, and Tailwind CSS. It features a clean, single‐page layout with the following sections:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/rushela/rushela/main/me.gif"
+       alt="animated banner" width="15%"/>
+</p>
 
 - **Hero**: Intro banner with name, tagline and links to GitHub/CV  
 - **About**: Profile summary and strengths cards  
