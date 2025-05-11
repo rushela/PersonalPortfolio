@@ -2,7 +2,8 @@
 
 This is my personal portfolio website, built with React, TypeScript, Vite, and Tailwind CSS. It features a clean, single‐page layout with the following sections:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/rushela/rushela/main/me.gif"
+  <img src="https://raw.githubusercontent.com/rushela/rushela/main/public
+/assets/me.gif"
        alt="animated banner" width="15%"/>
 </p>
 
