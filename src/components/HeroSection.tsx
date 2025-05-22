@@ -28,7 +28,7 @@ export const HeroSection = () => {
                 </span>
               </a>
                 
-              <a href="/assets/rushela-cv.pdf" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-indigo-600 text-indigo-600 font-medium rounded-md hover:bg-indigo-50 transition-colors flex items-center">
+              <a href="/assets/REkanayakaCV.pdf" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-indigo-600 text-indigo-600 font-medium rounded-md hover:bg-indigo-50 transition-colors flex items-center">
                 Download CV
                 <Download className="ml-2 h-4 w-4" />
               </a>
