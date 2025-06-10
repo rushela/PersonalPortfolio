@@ -6,39 +6,60 @@ export const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState('academic');
 
   const academicProjects = [{
-    title: 'Personal Portfolio(This Page)',
+    title: 'Personal Portfolio',
+    description: 'A modern, responsive portfolio website built with React and Tailwind CSS',
     technologies: 'React, Tailwind CSS, TypeScript, Framer Motion',
-    demoUrl: 'https://personal-portfolio-six-topaz-28.vercel.app/'
+    demoUrl: 'https://personal-portfolio-six-topaz-28.vercel.app/',
+    image: '/assets/projects/this.png',
+    githubUrl: 'https://github.com/rushela/PersonalPortfolio'
   },{
     title: 'TeamSync – Collaboration & Evaluation System',
+    description: 'A comprehensive team collaboration platform with AI-driven insights',
     technologies: 'MERN Stack, AI-driven insights, Role-based access',
-    demoUrl: 'https://team-sync-self.vercel.app/'
+    demoUrl: 'https://team-sync-self.vercel.app/',
+    image: '/assets/projects/project1.png',
+    githubUrl: 'https://github.com/rushela/team-collaboration-project'
   },{
     title: 'Eco-Track: Smart bin System',
-    technologies: 'MERN Stack, Arduino NodeMCU (ESP8266), HC-SR04 Ultrasonic Sensor, Socket.io, Multer , jsPDF , Vercel / Heroku / DigitalOcean',
-    demoUrl: 'https://echo-tracking.vercel.app/'
+    description: 'IoT-based smart waste management system with real-time monitoring',
+    technologies: 'MERN Stack, Arduino NodeMCU (ESP8266), HC-SR04 Ultrasonic Sensor, Socket.io, Multer, jsPDF',
+    demoUrl: 'https://echo-tracking.vercel.app/',
+    image: '/assets/projects/project3.png',
+    githubUrl: 'https://github.com/rushela/EchoTracking-with-SmartBin'
   }, {
-    title: 'PETdot : Pet care system',
-    technologies: 'Html, Css, JavaScript,PHP, SQL, Bootstrap & jQuery'
+    title: 'PETdot: Pet Care System',
+    description: 'A comprehensive pet care management platform',
+    technologies: 'HTML, CSS, JavaScript, PHP, SQL, Bootstrap, jQuery',
+    image: '/assets/projects/project2.png',
+    githubUrl: 'https://github.com/rushela/PET-Care-System'
   }, {
-    title: 'TeamSync – Collaboration & Evaluation System (User Management Part)',
-    technologies: 'MERN Stack, AI-driven insights, Role-based access'
-  },{
-    title: 'Rental-System',
-    technologies: 'Java, JDBC, Servlet, JSP, HTML, CSS, JavaScript'
+    title: 'Rental System',
+    description: 'A Java-based rental management system',
+    technologies: 'Java, JDBC, Servlet, JSP, HTML, CSS, JavaScript',
+    image: '/assets/projects/rent.png',
+    githubUrl: 'https://github.com/rushela/Rental-System'
   },{
     title: 'Financial Tracker',
-    technologies: 'Kotlin, SQLite, ORM (Room Database), Android’s Notification Manager'
+    description: 'Android app for personal finance management',
+    technologies: "Kotlin, SQLite, Room Database, Android's Notification Manager",
+    image: '/assets/projects/fapp.png',
+    githubUrl: 'https://github.com/rushela/FinBot'
   }];
 
   const clientProjects = [{
     title: 'Holiday World Travel',
+    description: 'A modern travel booking platform with real-time availability',
     technologies: 'React, Tailwind CSS, TypeScript, Framer Motion',
-    demoUrl: 'https://holiday-world-travel.vercel.app/'
-  }, {
+    demoUrl: 'https://holiday-world-travel.vercel.app/',
+    image: '/assets/projects/hw.png',
+    githubUrl: 'https://github.com/rushela/HolidayWorld-Travel'
+  },{
     title: 'Eco-Track: Smart bin System',
-    technologies: 'MERN Stack, Arduino NodeMCU (ESP8266), HC-SR04 Ultrasonic Sensor, Socket.io, Multer , jsPDF , Vercel / Heroku / DigitalOcean',
-    demoUrl: 'https://echo-tracking.vercel.app/'
+    description: 'IoT-based smart waste management system with real-time monitoring',
+    technologies: 'MERN Stack, Arduino NodeMCU (ESP8266), HC-SR04 Ultrasonic Sensor, Socket.io, Multer, jsPDF',
+    demoUrl: 'https://echo-tracking.vercel.app/',
+    image: '/assets/projects/project3.png',
+    githubUrl: 'https://github.com/rushela/EchoTracking-with-SmartBin'
   }];
 
   const projects = activeTab === 'academic' ? academicProjects : clientProjects;
@@ -60,22 +81,31 @@ export const ProjectsSection = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: "easeOut"
       }
     }
   };
 
-  return <section id="projects" className="w-full py-20 px-4 md:px-8 bg-white">
+  return (
+    <section id="projects" className="w-full py-20 px-4 md:px-8 bg-gray-50 dark:bg-gray-800/50">
       <div className="max-w-7xl mx-auto">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12"
+          className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-4"
         >
           Projects
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto"
+        >
+          A showcase of my academic and client projects, demonstrating my skills and experience
+        </motion.p>
         
         {/* Tab Navigation */}
         <motion.div 
@@ -84,13 +114,13 @@ export const ProjectsSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-col items-center mb-12"
         >
-          <div className="inline-flex rounded-full border-2 border-indigo-100 p-1 bg-white shadow-sm">
+          <div className="inline-flex rounded-full border-2 border-indigo-100 dark:border-indigo-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden">
             <button
               onClick={() => setActiveTab('client')}
               className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-500 ease-in-out flex items-center gap-2 ${
                 activeTab === 'client'
                   ? 'bg-indigo-600 text-white shadow-md scale-105'
-                  : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700'
               }`}
             >
               <motion.div
@@ -105,7 +135,7 @@ export const ProjectsSection = () => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className="ml-1 text-xs bg-white/20 px-2 py-0.5 rounded-full"
+                className="ml-1 text-xs bg-white/20 dark:bg-gray-900/20 px-2 py-0.5 rounded-full"
               >
                 {clientProjects.length}
               </motion.span>
@@ -115,7 +145,7 @@ export const ProjectsSection = () => {
               className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-500 ease-in-out flex items-center gap-2 ${
                 activeTab === 'academic'
                   ? 'bg-indigo-600 text-white shadow-md scale-105'
-                  : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700'
               }`}
             >
               <motion.div
@@ -130,7 +160,7 @@ export const ProjectsSection = () => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className="ml-1 text-xs bg-white/20 px-2 py-0.5 rounded-full"
+                className="ml-1 text-xs bg-white/20 dark:bg-gray-900/20 px-2 py-0.5 rounded-full"
               >
                 {academicProjects.length}
               </motion.span>
@@ -145,95 +175,21 @@ export const ProjectsSection = () => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 will-change-transform-opacity"
           >
             {projects.map((project, index) => (
               <motion.div
                 variants={itemVariants}
                 key={index}
-                className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all duration-500 ease-in-out group hover:shadow-2xl hover:-translate-y-2 hover:scale-105"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl dark:hover:shadow-[0_8px_32px_0_rgba(99,102,241,0.25)] hover:-translate-y-2 hover:scale-105 transition-all duration-300 will-change-transform-opacity"
               >
-                <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-100 relative overflow-hidden">
-                  {activeTab === 'client' && index === 0 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/hw.png" 
-                      alt="Holiday World Travel Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : activeTab === 'client' && index === 1 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/project3.png" 
-                      alt="Smart Bin System Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : activeTab === 'academic' && index === 0 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/this.png" 
-                      alt="Personal Portfolio" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : activeTab === 'academic' && index === 1 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/project1.png" 
-                      alt="TeamSync Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : activeTab === 'academic' && index === 2 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/project3.png" 
-                      alt="Smart Bin System Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : activeTab === 'academic' && index === 3 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/project2.png" 
-                      alt="PETdot Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ): activeTab === 'academic' && index === 4 ? (
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/project1.png" 
-                      alt="TeamSync Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ): activeTab === 'academic' && index === 5 ?(
-                    <motion.img 
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      src="/assets/projects/rent.png" 
-                      alt="Smart Bin System Project" 
-                      className="w-full h-full object-cover"
-                    />
-                  ):<motion.img 
-                  initial={{ scale: 1.1 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  src="/assets/projects/fapp.png" 
-                  alt="Smart Bin System Project" 
-                  className="w-full h-full object-cover"
-                />}
+                <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    loading="lazy"
+                  />
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -242,8 +198,8 @@ export const ProjectsSection = () => {
                   >
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       activeTab === 'client' 
-                        ? 'bg-blue-100 text-blue-800' 
-                        : 'bg-purple-100 text-purple-800'
+                        ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' 
+                        : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
                     }`}>
                       {activeTab === 'client' ? 'Client' : 'Academic'}
                     </span>
@@ -254,44 +210,37 @@ export const ProjectsSection = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-xl font-semibold text-gray-800 mb-3"
+                    className="text-xl font-semibold text-gray-800 dark:text-white mb-2"
                   >
                     {project.title}
                   </motion.h3>
-                  <ul className="mb-4">
-                    {project.technologies.split(', ').map((tech, i) => (
-                      <motion.li 
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: i * 0.1 }}
-                        key={i} 
-                        className="text-gray-600 text-sm flex items-center mb-1"
-                      >
-                        <span className="mr-2 w-1.5 h-1.5 bg-indigo-500 rounded-full inline-block"></span>
-                        {tech}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <div className="flex justify-between items-center">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                    {project.description}
+                  </p>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Technologies Used:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.split(', ').map((tech, i) => (
+                        <span 
+                          key={i} 
+                          className="px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-xs rounded-md"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-6">
                     <motion.a 
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      href={
-                            activeTab === 'client' && index === 0 ? "https://github.com/rushela/HolidayWorld-Travel" :
-                            activeTab === 'client' && index === 1 ? "https://github.com/rushela/EchoTracking-with-SmartBin" :
-                            activeTab === 'academic' && index === 0 ? "https://github.com/rushela/PersonalPortfolio" : 
-                            activeTab === 'academic' && index === 1 ? "https://github.com/rushela/EchoTracking-with-SmartBin" : 
-                            activeTab === 'academic' && index === 2 ? "https://github.com/rushela/EchoTracking-with-SmartBin" :
-                            activeTab === 'academic' && index === 3 ? "https://github.com/rushela/PET-Care-System" :
-                            activeTab === 'academic' && index === 4 ? "https://github.com/rushela/team-collaboration-project" :
-                            activeTab === 'academic' && index === 5 ? "https://github.com/rushela/Rental-System" : 
-                            activeTab === 'academic' && index === 6 ? "https://github.com/rushela/FinBot" : "#"} 
+                      href={project.githubUrl}
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-all duration-300 ease-in-out"
+                      className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-all duration-300 ease-in-out"
                     >
-                      View Details
-                      <ArrowRight className="ml-1 h-4 w-4" />
+                      <Github className="mr-1 h-4 w-4" />
+                      View Code
                     </motion.a>
                     {project.demoUrl && (
                       <motion.a 
@@ -300,7 +249,7 @@ export const ProjectsSection = () => {
                         href={project.demoUrl}
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 transition-all duration-300 ease-in-out"
+                        className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out"
                       >
                         Live Demo
                         <ExternalLink className="ml-1 h-4 w-4" />
@@ -313,24 +262,25 @@ export const ProjectsSection = () => {
           </motion.div>
         </AnimatePresence>
 
+        {/* GitHub Button */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 text-center"
+          className="text-center mt-16"
         >
-          <motion.a 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="https://github.com/rushela" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white font-medium rounded-md transition-all duration-300 ease-in-out"
+          <a
+            href="https://github.com/rushela?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-gray-700 text-white font-semibold rounded-lg shadow-xl hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            <Github className="mr-2 h-5 w-5" />
-            See All on GitHub
-          </motion.a>
+            <Github className="mr-3 h-6 w-6" />
+            See All Projects on GitHub
+            <ArrowRight className="ml-3 h-5 w-5" />
+          </a>
         </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };

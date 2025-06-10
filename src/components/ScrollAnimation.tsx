@@ -44,10 +44,11 @@ export const ScrollAnimation = ({
       whileInView={{ x: 0, y: 0, opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{
-        duration: 1.1,
+        duration: 0.7,
         delay: delay,
         ease: [0.22, 1, 0.36, 1]
       }}
+      className="will-change-transform-opacity"
     >
       {children}
     </motion.div>
