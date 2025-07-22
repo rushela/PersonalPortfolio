@@ -50,7 +50,7 @@ export const ProjectsSection = () => {
     title: 'Holiday World Travel',
     description: 'A modern travel booking platform with real-time availability',
     technologies: 'React, Tailwind CSS, TypeScript, Framer Motion',
-    demoUrl: 'https://holiday-world-travel.vercel.app/',
+    demoUrl: 'https://hwtravelsrilanka.com/',
     image: '/assets/projects/hw.png',
     githubUrl: 'https://github.com/rushela/HolidayWorld-Travel'
   },{
