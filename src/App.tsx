@@ -7,6 +7,8 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ScrollAnimation } from './components/ScrollAnimation';
 import { LoadingScreen } from './components/LoadingScreen';
+import { Header } from './components/Header';
+import { HangingBulb } from './components/HangingBulb';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -14,45 +16,78 @@ export function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Reduced loading time for better user experience
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500); // 1.5 seconds loading time
-
-    return () => clearTimeout(timer);
+    // Check if critical resources are loaded
+    const handleLoad = () => {
+      // Minimum 800ms for smooth transition, but wait for document ready
+      const minLoadTime = 800;
+      const startTime = performance.now();
+      
+      const checkReady = () => {
+        const elapsed = performance.now() - startTime;
+        if (elapsed >= minLoadTime && document.readyState === 'complete') {
+          setIsLoading(false);
+        } else if (elapsed < minLoadTime) {
+          setTimeout(checkReady, minLoadTime - elapsed);
+        } else {
+          setIsLoading(false);
+        }
+      };
+      
+      if (document.readyState === 'complete') {
+        setTimeout(() => setIsLoading(false), minLoadTime);
+      } else {
+        window.addEventListener('load', () => setTimeout(checkReady, 100));
+      }
+    };
+    
+    handleLoad();
+    
+    return () => window.removeEventListener('load', handleLoad);
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+    <div 
+      className="w-full min-h-screen transition-colors duration-300" 
+      style={{ backgroundColor: 'var(--bg-main)' }}
+    >
+      {/* Header and HangingBulb are always visible after loading */}
+      {!isLoading && (
+        <>
+          <Header />
+          <HangingBulb />
+        </>
+      )}
+      
       <AnimatePresence mode="wait">
         {isLoading ? (
           <LoadingScreen key="loading" />
         ) : (
-          <motion.div
+          <motion.main
             key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="max-w-[2000px] mx-auto"
+            role="main"
           >
             <ScrollAnimation scrollToTop>
               <HeroSection />
             </ScrollAnimation>
-            <ScrollAnimation delay={0.1} direction="left">
+            <ScrollAnimation delay={0.05} direction="up">
               <AboutSection />
             </ScrollAnimation>
-            <ScrollAnimation delay={0.15} direction="right">
+            <ScrollAnimation delay={0.05} direction="up">
               <ProjectsSection />
             </ScrollAnimation>
-            <ScrollAnimation delay={0.2}>
+            <ScrollAnimation delay={0.05} direction="up">
               <SkillsSection />
             </ScrollAnimation>
-            <ScrollAnimation delay={0.25} direction="left">
+            <ScrollAnimation delay={0.05} direction="up">
               <TimelineSection />
             </ScrollAnimation>
             <ContactSection />
             <Footer />
-          </motion.div>
+          </motion.main>
         )}
       </AnimatePresence>
     </div>

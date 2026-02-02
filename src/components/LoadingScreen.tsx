@@ -5,59 +5,63 @@ export const LoadingScreen = () => {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ backgroundColor: 'var(--bg-main)' }}
     >
-      <div className="text-center">
+      <div className="text-center px-4">
         <motion.div
-          initial={{ scale: 0.5, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{
-            duration: 0.5,
+            duration: 0.4,
             ease: "easeOut"
           }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">
+          <h1 
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl italic"
+            style={{ 
+              fontFamily: 'Georgia, serif',
+              color: 'var(--text-heading)',
+              fontWeight: 'normal'
+            }}
+          >
             Gavindu Rushela
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mt-2">
+          <p 
+            className="text-base sm:text-lg md:text-xl mt-2"
+            style={{ color: 'var(--text-muted)' }}
+          >
             Software Engineer
           </p>
         </motion.div>
 
         <motion.div
-          className="flex justify-center items-center gap-2"
+          className="flex justify-center items-center gap-1.5 sm:gap-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.3 }}
         >
           {[0, 1, 2].map((index) => (
             <motion.div
               key={index}
-              className="w-3 h-3 bg-indigo-600 dark:bg-indigo-400 rounded-full"
+              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full"
+              style={{ backgroundColor: 'var(--text-muted)' }}
               animate={{
-                y: [0, -10, 0],
-                scale: [1, 1.2, 1],
+                y: [0, -8, 0],
+                scale: [1, 1.1, 1],
               }}
               transition={{
-                duration: 0.8,
+                duration: 0.6,
                 repeat: Infinity,
-                delay: index * 0.2,
+                delay: index * 0.15,
                 ease: "easeInOut"
               }}
             />
           ))}
         </motion.div>
-
-        <motion.div
-          className="mt-8 text-sm text-gray-500 dark:text-gray-400"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          Loading your experience...
-        </motion.div>
       </div>
     </motion.div>
   );
-}; 
+};

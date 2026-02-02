@@ -2,33 +2,106 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
-    <!-- Primary Meta Tags -->
-    <title>Gavindu Rushela Ekanayaka | Software Engineering Student</title>
-    <meta name="title" content="Gavindu Rushela Ekanayaka | Software Engineering Student">
-    <meta name="description" content="Portfolio website of Gavindu Rushela Ekanayaka, an undergraduate Software Engineering student at SLIIT. View my projects, skills, and experience.">
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    
+    <!-- Primary Meta Tags - SEO Optimized -->
+    <title>Gavindu Rushela Ekanayaka | Software Engineer | Full Stack Developer Portfolio</title>
+    <meta name="title" content="Gavindu Rushela Ekanayaka | Software Engineer | Full Stack Developer Portfolio" />
+    <meta name="description" content="Gavindu Rushela Ekanayaka - Software Engineer and Full Stack Developer from Sri Lanka. Specializing in React, Node.js, TypeScript, and modern web technologies. View my portfolio, projects, and skills." />
+    <meta name="keywords" content="Gavindu Rushela Ekanayaka, Rushela, GRE, Software Engineer, Full Stack Developer, Web Developer, React Developer, Node.js Developer, SLIIT, Sri Lanka, Portfolio, JavaScript, TypeScript, MERN Stack, Frontend Developer, Backend Developer" />
+    <meta name="author" content="Gavindu Rushela Ekanayaka" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://rushela.vercel.app/" />
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rushela.github.io/">
-    <meta property="og:title" content="Gavindu Rushela Ekanayaka | Software Engineering Student">
-    <meta property="og:description" content="Portfolio website of Gavindu Rushela Ekanayaka, an undergraduate Software Engineering student at SLIIT. View my projects, skills, and experience.">
-    <meta property="og:image" content="/assets/profile.png">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rushela.vercel.app/" />
+    <meta property="og:title" content="Gavindu Rushela Ekanayaka | Software Engineer | Full Stack Developer" />
+    <meta property="og:description" content="Software Engineer and Full Stack Developer from Sri Lanka. Specializing in React, Node.js, TypeScript. View my portfolio, projects, and professional journey." />
+    <meta property="og:image" content="https://rushela.vercel.app/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Gavindu Rushela Ekanayaka Portfolio" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rushela.github.io/">
-    <meta property="twitter:title" content="Gavindu Rushela Ekanayaka | Software Engineering Student">
-    <meta property="twitter:description" content="Portfolio website of Gavindu Rushela Ekanayaka, an undergraduate Software Engineering student at SLIIT. View my projects, skills, and experience.">
-    <meta property="twitter:image" content="/assets/profile.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://rushela.vercel.app/" />
+    <meta name="twitter:title" content="Gavindu Rushela Ekanayaka | Software Engineer | Full Stack Developer" />
+    <meta name="twitter:description" content="Software Engineer and Full Stack Developer from Sri Lanka. Specializing in React, Node.js, TypeScript. View my portfolio and projects." />
+    <meta name="twitter:image" content="https://rushela.vercel.app/assets/og-image.png" />
+    <meta name="twitter:creator" content="@rushela" />
 
-    <!-- Additional Meta Tags -->
-    <meta name="keywords" content="software engineering, web development, portfolio, SLIIT, student, projects">
-    <meta name="author" content="Gavindu Rushela Ekanayaka">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#6366F1">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F9FAFB" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="GRE Portfolio" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Geo Tags for Local SEO -->
+    <meta name="geo.region" content="LK" />
+    <meta name="geo.placename" content="Colombo, Sri Lanka" />
+    
+    <!-- Structured Data - JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Gavindu Rushela Ekanayaka",
+      "alternateName": ["Rushela", "GRE", "Gavindu Rushela"],
+      "url": "https://rushela.vercel.app/",
+      "image": "https://rushela.vercel.app/assets/gv.png",
+      "jobTitle": "Software Engineer",
+      "description": "Full Stack Developer specializing in React, Node.js, and modern web technologies",
+      "email": "gavindurushel@gmail.com",
+      "telephone": "+94766902338",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Colombo",
+        "addressCountry": "Sri Lanka"
+      },
+      "sameAs": [
+        "https://github.com/rushela",
+        "https://www.linkedin.com/in/rushela-ekanayaka-357072345"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Sri Lanka Institute of Information Technology (SLIIT)"
+      },
+      "knowsAbout": ["JavaScript", "TypeScript", "React", "Node.js", "MongoDB", "Full Stack Development", "Web Development"]
+    }
+    </script>
+    
+    <!-- Website Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Gavindu Rushela Ekanayaka Portfolio",
+      "url": "https://rushela.vercel.app/",
+      "description": "Professional portfolio of Gavindu Rushela Ekanayaka - Software Engineer and Full Stack Developer",
+      "author": {
+        "@type": "Person",
+        "name": "Gavindu Rushela Ekanayaka"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
