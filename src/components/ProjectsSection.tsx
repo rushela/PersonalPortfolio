@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowRight, Github, ExternalLink, Briefcase, GraduationCap } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { Github, ExternalLink } from 'lucide-react';
 
 export const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState('academic');
@@ -71,222 +70,150 @@ export const ProjectsSection = () => {
 
   const projects = activeTab === 'academic' ? academicProjects : clientProjects;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section id="projects" className="w-full py-20 px-4 md:px-8 bg-gray-50 dark:bg-gray-800/50">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-4"
-        >
-          Projects
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto"
-        >
-          A showcase of my academic and client projects, demonstrating my skills and experience
-        </motion.p>
+    <section id="projects" className="w-full py-24 md:py-32 px-4 md:px-8" style={{ backgroundColor: 'var(--bg-card)' }}>
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Editorial Style */}
+        <div className="text-center mb-16">
+          <p 
+            className="text-sm tracking-[0.3em] uppercase mb-4"
+            style={{ color: 'var(--text-muted)' }}
+          >
+            Portfolio
+          </p>
+          <h2 
+            className="text-4xl md:text-5xl lg:text-6xl italic mb-6"
+            style={{ 
+              fontFamily: 'Georgia, serif',
+              color: 'var(--text-heading)',
+              fontWeight: 'normal'
+            }}
+          >
+            Selected works
+          </h2>
+          <p 
+            className="text-base md:text-lg max-w-xl mx-auto"
+            style={{ color: 'var(--text-body)' }}
+          >
+            A showcase of my academic and client projects
+          </p>
+        </div>
         
-        {/* Tab Navigation */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col items-center mb-12"
-        >
-          <div className="inline-flex rounded-full border-2 border-indigo-100 dark:border-indigo-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden">
+        {/* Tab Navigation - Simple */}
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex gap-8" style={{ borderBottom: '1px solid var(--border-light)' }}>
             <button
               onClick={() => setActiveTab('client')}
-              className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-500 ease-in-out flex items-center gap-2 ${
-                activeTab === 'client'
-                  ? 'bg-indigo-600 text-white shadow-md scale-105'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700'
-              }`}
+              className="pb-4 text-sm tracking-wide transition-all duration-300"
+              style={{ 
+                color: activeTab === 'client' ? 'var(--text-heading)' : 'var(--text-muted)',
+                borderBottom: activeTab === 'client' ? '2px solid var(--text-heading)' : '2px solid transparent',
+                marginBottom: '-1px'
+              }}
             >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Briefcase className="w-4 h-4" />
-              </motion.div>
-              Client Projects
-              <motion.span 
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                className="ml-1 text-xs bg-white/20 dark:bg-gray-900/20 px-2 py-0.5 rounded-full"
-              >
-                {clientProjects.length}
-              </motion.span>
+              Client Projects ({clientProjects.length})
             </button>
             <button
               onClick={() => setActiveTab('academic')}
-              className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-500 ease-in-out flex items-center gap-2 ${
-                activeTab === 'academic'
-                  ? 'bg-indigo-600 text-white shadow-md scale-105'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700'
-              }`}
+              className="pb-4 text-sm tracking-wide transition-all duration-300"
+              style={{ 
+                color: activeTab === 'academic' ? 'var(--text-heading)' : 'var(--text-muted)',
+                borderBottom: activeTab === 'academic' ? '2px solid var(--text-heading)' : '2px solid transparent',
+                marginBottom: '-1px'
+              }}
             >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <GraduationCap className="w-4 h-4" />
-              </motion.div>
-              Academic Projects
-              <motion.span 
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                className="ml-1 text-xs bg-white/20 dark:bg-gray-900/20 px-2 py-0.5 rounded-full"
-              >
-                {academicProjects.length}
-              </motion.span>
+              Academic Projects ({academicProjects.length})
             </button>
           </div>
-        </motion.div>
+        </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div 
-            key={activeTab}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 will-change-transform-opacity"
-          >
-            {projects.map((project, index) => (
-              <motion.div
-                variants={itemVariants}
-                key={index}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl dark:hover:shadow-[0_8px_32px_0_rgba(99,102,241,0.25)] hover:-translate-y-2 hover:scale-105 transition-all duration-300 will-change-transform-opacity"
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          {projects.map((project, index) => (
+            <div key={index} className="group">
+              {/* Project Image */}
+              <div 
+                className="relative overflow-hidden mb-6"
+                style={{ aspectRatio: '16/10' }}
               >
-                <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
-                    className="absolute top-3 right-3"
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Project Info */}
+              <div>
+                <h3 
+                  className="text-xl md:text-2xl italic mb-3"
+                  style={{ 
+                    fontFamily: 'Georgia, serif',
+                    color: 'var(--text-heading)',
+                    fontWeight: 'normal'
+                  }}
+                >
+                  {project.title}
+                </h3>
+                <p 
+                  className="text-sm mb-4 leading-relaxed"
+                  style={{ color: 'var(--text-body)' }}
+                >
+                  {project.description}
+                </p>
+                
+                {/* Technologies */}
+                <p 
+                  className="text-xs mb-6"
+                  style={{ color: 'var(--text-muted)' }}
+                >
+                  {project.technologies}
+                </p>
+                
+                {/* Links */}
+                <div className="flex items-center gap-6">
+                  <a 
+                    href={project.githubUrl}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-60"
+                    style={{ color: 'var(--text-heading)' }}
                   >
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      activeTab === 'client' 
-                        ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' 
-                        : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
-                    }`}>
-                      {activeTab === 'client' ? 'Client' : 'Academic'}
-                    </span>
-                  </motion.div>
-                </div>
-                <div className="p-6">
-                  <motion.h3 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-xl font-semibold text-gray-800 dark:text-white mb-2"
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                    {project.description}
-                  </p>
-                  <div className="mb-4">
-                    <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Technologies Used:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.split(', ').map((tech, i) => (
-                        <span 
-                          key={i} 
-                          className="px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-xs rounded-md"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center mt-6">
-                    <motion.a 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.githubUrl}
+                    <Github className="w-4 h-4" />
+                    View Code
+                  </a>
+                  {project.demoUrl && (
+                    <a 
+                      href={project.demoUrl}
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200 transition-all duration-300 ease-in-out"
+                      className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-60"
+                      style={{ color: 'var(--text-heading)' }}
                     >
-                      <Github className="mr-1 h-4 w-4" />
-                      View Code
-                    </motion.a>
-                    {project.demoUrl && (
-                      <motion.a 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.demoUrl}
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out"
-                      >
-                        Live Demo
-                        <ExternalLink className="ml-1 h-4 w-4" />
-                      </motion.a>
-                    )}
-                  </div>
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* GitHub Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-16"
-        >
+        <div className="text-center mt-20 pt-12" style={{ borderTop: '1px solid var(--border-light)' }}>
           <a
             href="https://github.com/rushela?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-gray-700 text-white font-semibold rounded-lg shadow-xl hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="inline-flex items-center gap-3 text-sm tracking-wide transition-opacity hover:opacity-60"
+            style={{ color: 'var(--text-heading)' }}
           >
-            <Github className="mr-3 h-6 w-6" />
-            See All Projects on GitHub
-            <ArrowRight className="ml-3 h-5 w-5" />
+            <Github className="w-5 h-5" />
+            See all projects on GitHub
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

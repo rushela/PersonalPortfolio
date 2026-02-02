@@ -21,7 +21,7 @@ export const ScrollAnimation = ({
         behavior: 'smooth'
       });
     }
-  }, []);
+  }, [scrollToTop]);
 
   const getInitialPosition = () => {
     switch (direction) {

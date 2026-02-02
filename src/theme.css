@@ -1,0 +1,261 @@
+/* ================================
+   Root Theme Variables
+   ================================ */
+:root {
+  /* Brand Colors */
+  --color-primary: #3B82F6;       /* Soft Professional Blue */
+  --color-primary-hover: #2563EB;
+  --color-secondary: #64748B;     /* Muted Slate */
+
+  /* Backgrounds */
+  --bg-main: #F9FAFB;             /* Aesthetic Soft */
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-muted: #EFF6FF;
+
+  /* Text Colors */
+  --text-heading: #0B1220;        /* Softer than black */
+  --text-subheading: #1E293B;     /* Refined Slate */
+  --text-body: #475569;           /* Slate 600 */
+  --text-muted: #94A3B8;          /* Lighter Slate */
+  --text-inverse: #ffffff;
+
+  /* Borders & Shadows */
+  --border-light: rgba(226, 232, 240, 0.8); /* Soft Slate */
+  --shadow-sm: 0 4px 10px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 20px 40px rgba(15, 23, 42, 0.05);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* ================================
+   Global Styles
+   ================================ */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+}
+
+/* ================================
+   Typography
+   ================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+}
+
+p {
+  color: var(--text-body);
+}
+
+small,
+.label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* ================================
+   Buttons
+   ================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: none;
+  text-decoration: none;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-subheading);
+  border: 1px solid #CBD5E1;
+}
+
+.btn-secondary:hover {
+  background-color: #EFF6FF;
+  border-color: var(--color-primary);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-body);
+}
+
+.btn-ghost:hover {
+  background-color: rgba(226, 232, 240, 0.6);
+}
+
+/* ================================
+   Cards
+   ================================ */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+/* Glass Card (Optional) */
+.card-glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+/* ================================
+   Links
+   ================================ */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   Sections
+   ================================ */
+.section {
+  padding: 5rem 1.5rem;
+}
+
+.section-title {
+  margin-bottom: 2rem;
+}
+
+/* ================================
+   Dark Mode
+   ================================ */
+.dark {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-muted: #1e293b;
+
+  --text-heading: #f8fafc;
+  --text-subheading: #e2e8f0;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border-light: #334155;
+
+  --color-primary: #60A5FA;
+  --color-primary-hover: #3b82f6;
+}
+
+.dark .card-glass {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+/* Also support data-theme for backwards compatibility */
+[data-theme="dark"] {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-muted: #1e293b;
+
+  --text-heading: #f8fafc;
+  --text-subheading: #e2e8f0;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --border-light: #334155;
+
+  --color-primary: #60A5FA;
+  --color-primary-hover: #3b82f6;
+}
+
+[data-theme="dark"] .card-glass {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+/* ================================
+   Hanging Bulb Styles
+   ================================ */
+@keyframes bulbSwing {
+  0%, 100% { transform: translateX(-50%) rotate(-2deg); }
+  50% { transform: translateX(-50%) rotate(2deg); }
+}
+
+@keyframes bulbGlow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(253, 224, 71, 0.6)); }
+  50% { filter: drop-shadow(0 0 30px rgba(253, 224, 71, 0.8)); }
+}
+
+@keyframes cordWiggle {
+  0%, 100% { d: path('M 20 0 Q 18 45 20 90'); }
+  25% { d: path('M 20 0 Q 23 45 20 90'); }
+  75% { d: path('M 20 0 Q 17 45 20 90'); }
+}
+
+.hanging-bulb-container:hover .bulb-element {
+  animation: bulbSwing 2s ease-in-out infinite;
+}
+
+.bulb-glow {
+  animation: bulbGlow 3s ease-in-out infinite;
+}
+
+/* Tooltip shows on hover */
+.bulb-container:hover .hover-tooltip {
+  opacity: 1 !important;
+}
+
+.bulb-container .hover-tooltip {
+  animation: tooltipBounce 0.3s ease-out;
+}
+
+@keyframes tooltipBounce {
+  0% { transform: translateX(-50%) translateY(-5px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}

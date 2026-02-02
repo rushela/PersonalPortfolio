@@ -1,5 +1,14 @@
 import './index.css';
-import React from "react";
-import { render } from "react-dom";
+import './theme.css';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { App } from "./App";
-render(<App />, document.getElementById("root"));
+
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+}

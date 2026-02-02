@@ -1,115 +1,177 @@
 import { Phone, Mail, Github, Linkedin, Send, MapPin } from 'lucide-react';
-import { useForm, ValidationError } from '@formspree/react';
-import { motion } from 'framer-motion';
+import { useState, FormEvent } from 'react';
 
 export const ContactSection = () => {
-  // replace your useState + action/form attributes with the hook
-  const [state, handleSubmit] = useForm('xjkwwaov');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setIsSuccess(true);
+    } catch (err) {
+      setError('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <section id="contact" className="w-full py-20 px-4 md:px-8 bg-gradient-to-b from-gray-900 to-gray-950 dark:from-gray-950 dark:to-gray-900 text-white">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-4"
-        >
-          Get in Touch
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center text-gray-400 mb-16 max-w-2xl mx-auto"
-        >
-          Have a question or want to work together? Feel free to reach out!
-        </motion.p>
-
-        <div className="flex flex-col md:flex-row gap-12">
-          {/* Contact Info Column */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full md:w-1/2 md:pr-12 flex flex-col justify-center"
+    <section id="contact" className="w-full py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8" style={{ backgroundColor: 'var(--bg-card)' }}>
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Editorial Style */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <p 
+            className="text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4"
+            style={{ color: 'var(--text-muted)' }}
           >
-            <div className="space-y-8">
-              <div className="flex items-start p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
-                <div className="p-3 bg-indigo-500/20 rounded-lg mr-4">
-                  <Phone className="h-6 w-6 text-indigo-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-300">+94 76 690 2338</p>
+            Contact
+          </p>
+          <h2 
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl italic mb-4 sm:mb-6"
+            style={{ 
+              fontFamily: 'Georgia, serif',
+              color: 'var(--text-heading)',
+              fontWeight: 'normal'
+            }}
+          >
+            Get in touch
+          </h2>
+          <p 
+            className="text-sm sm:text-base md:text-lg max-w-xl mx-auto px-4"
+            style={{ color: 'var(--text-body)' }}
+          >
+            Have a question or want to work together? Feel free to reach out
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 md:gap-16 lg:gap-24">
+          {/* Contact Info */}
+          <div className="space-y-8 sm:space-y-10">
+            <div>
+              <h3 
+                className="text-xl sm:text-2xl md:text-3xl italic mb-6 sm:mb-8"
+                style={{ 
+                  fontFamily: 'Georgia, serif',
+                  color: 'var(--text-heading)',
+                  fontWeight: 'normal'
+                }}
+              >
+                Let's connect
+              </h3>
+              
+              <div className="space-y-4 sm:space-y-6">
+                <a href="tel:+94766902338" className="flex items-center gap-3 sm:gap-4 hover:opacity-70 transition-opacity">
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: 'var(--text-muted)' }} />
+                  <span className="text-sm sm:text-base" style={{ color: 'var(--text-body)' }}>+94 76 690 2338</span>
+                </a>
+                
+                <a href="mailto:gavindurushel@gmail.com" className="flex items-center gap-3 sm:gap-4 hover:opacity-70 transition-opacity">
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: 'var(--text-muted)' }} />
+                  <span className="text-sm sm:text-base break-all" style={{ color: 'var(--text-body)' }}>gavindurushel@gmail.com</span>
+                </a>
+                
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: 'var(--text-muted)' }} />
+                  <span className="text-sm sm:text-base" style={{ color: 'var(--text-body)' }}>Colombo, Sri Lanka</span>
                 </div>
               </div>
+            </div>
 
-              <div className="flex items-start p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
-                <div className="p-3 bg-indigo-500/20 rounded-lg mr-4">
-                  <Mail className="h-6 w-6 text-indigo-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Email</h3>
-                  <p className="text-gray-300">rushelbit17@gmail.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start p-4 bg-gray-800/50 rounded-xl hover:bg-gray-800/70 transition-all duration-300">
-                <div className="p-3 bg-indigo-500/20 rounded-lg mr-4">
-                  <MapPin className="h-6 w-6 text-indigo-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Location</h3>
-                  <p className="text-gray-300">Colombo, Sri Lanka</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4 mt-8">
+            {/* Social Links */}
+            <div className="pt-4 sm:pt-6" style={{ borderTop: '1px solid var(--border-light)' }}>
+              <h4 
+                className="text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-4 sm:mb-6"
+                style={{ color: 'var(--text-muted)' }}
+              >
+                Follow me
+              </h4>
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 <a
                   href="https://github.com/rushela"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-gray-800/50 rounded-lg hover:bg-gray-800/70 transition-all duration-300 hover:scale-110"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm transition-opacity hover:opacity-60"
+                  style={{ color: 'var(--text-heading)' }}
+                  aria-label="GitHub Profile"
                 >
-                  <Github className="h-6 w-6 text-white" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                  GitHub
                 </a>
                 <a
                   href="https://www.linkedin.com/in/rushela-ekanayaka-357072345"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-gray-800/50 rounded-lg hover:bg-gray-800/70 transition-all duration-300 hover:scale-110"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm transition-opacity hover:opacity-60"
+                  style={{ color: 'var(--text-heading)' }}
+                  aria-label="LinkedIn Profile"
                 >
-                  <Linkedin className="h-6 w-6 text-white" />
+                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+                  LinkedIn
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Form Column */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full md:w-1/2"
-          >
-            {state.succeeded ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center p-8 bg-green-500/20 rounded-xl border border-green-500/30"
+          {/* Contact Form */}
+          <div>
+            {isSuccess ? (
+              <div 
+                className="text-center py-12 px-8"
+                style={{ border: '1px solid var(--border-light)' }}
               >
-                <h3 className="text-xl font-semibold text-green-400 mb-2">Message Sent!</h3>
-                <p className="text-gray-300">
-                  Thank you for your message! I'll get back to you soon.
+                <h3 
+                  className="text-2xl italic mb-4"
+                  style={{ 
+                    fontFamily: 'Georgia, serif',
+                    color: 'var(--text-heading)',
+                    fontWeight: 'normal'
+                  }}
+                >
+                  Message sent!
+                </h3>
+                <p style={{ color: 'var(--text-body)' }}>
+                  Thank you for your message. I'll get back to you soon.
                 </p>
-              </motion.div>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="p-4 text-red-600 bg-red-50 rounded" style={{ border: '1px solid #fecaca' }}>
+                    {error}
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-300">
+                    <label 
+                      htmlFor="name" 
+                      className="block text-sm tracking-wide mb-2"
+                      style={{ color: 'var(--text-muted)' }}
+                    >
                       Name
                     </label>
                     <input
@@ -117,14 +179,21 @@ export const ContactSection = () => {
                       type="text"
                       name="name"
                       required
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-500 transition-all duration-300"
+                      className="w-full px-4 py-3 bg-transparent transition-all duration-300 focus:outline-none"
+                      style={{ 
+                        border: '1px solid var(--border-light)',
+                        color: 'var(--text-heading)',
+                        borderRadius: '2px'
+                      }}
                       placeholder="Your name"
                     />
-                    <ValidationError prefix="Name" field="name" errors={state.errors} />
                   </div>
-                  {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">
+                    <label 
+                      htmlFor="email" 
+                      className="block text-sm tracking-wide mb-2"
+                      style={{ color: 'var(--text-muted)' }}
+                    >
                       Email
                     </label>
                     <input
@@ -132,15 +201,23 @@ export const ContactSection = () => {
                       type="email"
                       name="email"
                       required
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-500 transition-all duration-300"
+                      className="w-full px-4 py-3 bg-transparent transition-all duration-300 focus:outline-none"
+                      style={{ 
+                        border: '1px solid var(--border-light)',
+                        color: 'var(--text-heading)',
+                        borderRadius: '2px'
+                      }}
                       placeholder="you@example.com"
                     />
-                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </div>
                 </div>
-                {/* Subject */}
+                
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-300">
+                  <label 
+                    htmlFor="subject" 
+                    className="block text-sm tracking-wide mb-2"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
                     Subject
                   </label>
                   <input
@@ -148,14 +225,22 @@ export const ContactSection = () => {
                     type="text"
                     name="subject"
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-500 transition-all duration-300"
+                    className="w-full px-4 py-3 bg-transparent transition-all duration-300 focus:outline-none"
+                    style={{ 
+                      border: '1px solid var(--border-light)',
+                      color: 'var(--text-heading)',
+                      borderRadius: '2px'
+                    }}
                     placeholder="Subject"
                   />
-                  <ValidationError prefix="Subject" field="subject" errors={state.errors} />
                 </div>
-                {/* Message */}
+                
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-300">
+                  <label 
+                    htmlFor="message" 
+                    className="block text-sm tracking-wide mb-2"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
                     Message
                   </label>
                   <textarea
@@ -163,26 +248,32 @@ export const ContactSection = () => {
                     name="message"
                     rows={5}
                     required
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-500 resize-none transition-all duration-300"
+                    className="w-full px-4 py-3 bg-transparent transition-all duration-300 focus:outline-none resize-none"
+                    style={{ 
+                      border: '1px solid var(--border-light)',
+                      color: 'var(--text-heading)',
+                      borderRadius: '2px'
+                    }}
                     placeholder="Your message..."
                   />
-                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
-                {/* Submit */}
+                
                 <div>
                   <button
                     type="submit"
-                    disabled={state.submitting}
-                    className="w-full px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center gap-3 px-8 py-3 text-sm tracking-wide transition-all duration-300 hover:opacity-80 disabled:opacity-50"
+                    style={{ 
+                      backgroundColor: 'var(--text-heading)',
+                      color: 'var(--bg-main)',
+                      borderRadius: '2px'
+                    }}
                   >
-                    {state.submitting ? (
-                      <>
-                        <span className="animate-spin">⏳</span>
-                        Sending...
-                      </>
+                    {isSubmitting ? (
+                      'Sending...'
                     ) : (
                       <>
-                        <Send className="h-5 w-5" />
+                        <Send className="w-4 h-4" />
                         Send Message
                       </>
                     )}
@@ -190,7 +281,7 @@ export const ContactSection = () => {
                 </div>
               </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
