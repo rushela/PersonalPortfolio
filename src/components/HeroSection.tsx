@@ -1,121 +1,75 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-
 export const HeroSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  // Transform values based on scroll - image shrinks, moves left and down
-  // Reduced values for better mobile experience
-  const imageScale = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.6, 0.4]);
-  const imageX = useTransform(scrollYProgress, [0, 0.6, 1], [0, -100, -150]);
-  const imageY = useTransform(scrollYProgress, [0, 0.6, 1], [0, 100, 200]);
-  const imageOpacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-
   return (
-    <>
-      <section 
-        ref={sectionRef} 
-        id="home" 
-        className="relative w-full min-h-screen flex items-center justify-center overflow-visible" 
-        style={{ backgroundColor: 'var(--bg-main)' }}
-      >
-        <div className="max-w-full mx-auto w-full h-full flex items-center justify-center px-4 sm:px-6 md:px-8">
-          {/* Main container */}
-          <div className="w-full flex items-center justify-center relative">
-
-            {/* Left text - "I AM RUSHELA" - Hidden on mobile, visible on tablet+ */}
-            <motion.div 
-              className="hidden sm:block absolute left-0 sm:left-4 md:left-8 lg:left-16 bottom-4 sm:bottom-8 md:bottom-12 z-20"
-              style={{ opacity: textOpacity }}
-            >
-              <h2 
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl italic leading-tight" 
-                style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 'normal' }}
-              >
-                I AM<br />RUSHELA
-              </h2>
-            </motion.div>
-
-            {/* Center - Image with "Hey, there" overlay split text */}
-            <div className="relative flex items-center justify-center">
-              <motion.div 
-                className="relative w-[280px] h-[400px] sm:w-[350px] sm:h-[500px] md:w-[500px] md:h-[650px] lg:w-[650px] lg:h-[850px] xl:w-[770px] xl:h-[1000px]"
-                style={{ 
-                  scale: imageScale,
-                  x: imageX,
-                  y: imageY,
-                  opacity: imageOpacity,
-                }}
-              >
-                {/* Profile Image */}
-                <img
-                  src="/assets/gv.png"
-                  alt="Gavindu Rushela Ekanayaka - Software Engineer"
-                  className="w-full h-full object-cover object-top will-change-transform"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-
-                {/* "Hey," text - left side */}
-                <motion.div 
-                  className="absolute top-[35%] sm:top-[40%] left-0 transform -translate-y-1/2 -translate-x-1/4 sm:-translate-x-1/9 z-10"
-                  style={{ opacity: textOpacity }}
-                >
-                  <h1 
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-serif italic" 
-                    style={{ fontFamily: 'Georgia, serif', color: 'var(--text-subheading)', fontWeight: 'normal' }}
-                  >
-                    Hey,
-                  </h1>
-                </motion.div>
-                {/* "there" text - right side */}
-                <motion.div 
-                  className="absolute top-[35%] sm:top-[40%] right-0 transform -translate-y-1/2 translate-x-1/4 sm:translate-x-1/9 z-10"
-                  style={{ opacity: textOpacity }}
-                >
-                  <h1 
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-serif italic" 
-                    style={{ fontFamily: 'Georgia, serif', color: 'var(--text-subheading)', fontWeight: 'normal' }}
-                  >
-                    there
-                  </h1>
-                </motion.div>
-              </motion.div>
-            </div>
-
-            {/* Right text - "SOFTWARE ENGINEER" - Hidden on mobile, visible on tablet+ */}
-            <motion.div 
-              className="hidden sm:block absolute right-0 sm:right-4 md:right-8 lg:right-16 bottom-4 sm:bottom-8 md:bottom-12 z-20"
-              style={{ opacity: textOpacity }}
-            >
-              <h2 
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl italic leading-tight text-right" 
-                style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 'normal' }}
-              >
-                SOFTWARE<br />ENGINEER
-              </h2>
-            </motion.div>
-          </div>
-        </div>
-        
-        {/* Mobile text - Only visible on mobile */}
-        <motion.div 
-          className="sm:hidden absolute bottom-8 left-0 right-0 text-center z-20 px-4"
-          style={{ opacity: textOpacity }}
+    <section
+      id="home"
+      className="relative w-full min-h-[100dvh] overflow-hidden"
+      style={{ background: 'var(--bg-hero)' }}
+    >
+      <div className="relative mx-auto h-[100dvh] w-full max-w-[1600px] px-5 pt-24 sm:px-8 sm:pt-28 lg:px-12">
+        <h1
+          className="pointer-events-none absolute left-1/2 top-[34%] z-10 hidden -translate-x-1/2 -translate-y-1/2 text-[clamp(2.5rem,6.6vw,5.7rem)] font-medium italic leading-none md:block"
+          style={{ fontFamily: 'Georgia, serif', color: 'var(--text-subheading)' }}
         >
-          <h2 
-            className="text-xl italic" 
-            style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 'normal' }}
+          <span className="inline-block pr-[1.4em]">Hey,</span>
+          <span className="inline-block ml-[1.4em]">there</span>
+        </h1>
+
+        <div className="absolute bottom-0 left-1/2 z-20 w-[clamp(22rem,82vw,28rem)] -translate-x-1/2 md:w-[clamp(20rem,35vw,34rem)]">
+          <img
+            src="/assets/gv_copy.png"
+            alt="Gavindu Rushela Ekanayaka - Software Engineer"
+            className="h-auto w-full object-contain object-bottom"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </div>
+
+        <h1
+          className="mx-auto mt-8 max-w-[20rem] text-center text-[clamp(1.9rem,9.8vw,3.2rem)] italic leading-none md:hidden"
+          style={{ fontFamily: 'Georgia, serif', color: 'var(--text-subheading)' }}
+        >
+          <span className="inline-block pr-[0.25em]">Hey,</span>
+          <span className="inline-block ml-[0.2em]">there</span>
+        </h1>
+
+        <div className="mx-auto mt-3 flex w-full max-w-[26rem] flex-col items-center gap-1 px-2 text-center md:hidden">
+          <h2
+            className="whitespace-nowrap text-[clamp(1.2rem,6.4vw,1.7rem)] italic leading-none"
+            style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 500 }}
           >
-            I AM RUSHELA · SOFTWARE ENGINEER
+            I AM RUSHELA
           </h2>
-        </motion.div>
-      </section>
-    </>
+          <h2
+            className="whitespace-nowrap text-[clamp(1.2rem,6.4vw,1.7rem)] italic leading-none"
+            style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 500 }}
+          >
+            SOFTWARE ENGINEER
+          </h2>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-8 left-5 z-30 hidden text-left sm:bottom-10 sm:left-8 sm:block lg:left-12">
+          <h2
+            className="text-[clamp(1.45rem,3.9vw,3.25rem)] italic leading-[0.95]"
+            style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 500 }}
+          >
+            I AM
+            <br />
+            RUSHELA
+          </h2>
+        </div>
+
+        <div className="pointer-events-none absolute bottom-8 right-5 z-30 hidden text-right sm:bottom-10 sm:right-8 sm:block lg:right-12">
+          <h2
+            className="text-[clamp(1.45rem,3.9vw,3.25rem)] italic leading-[0.95]"
+            style={{ fontFamily: 'Georgia, serif', color: 'var(--text-heading)', fontWeight: 500 }}
+          >
+            SOFTWARE
+            <br />
+            ENGINEER
+          </h2>
+        </div>
+
+      </div>
+    </section>
   );
 };
