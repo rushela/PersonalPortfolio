@@ -9,6 +9,7 @@
 
   /* Backgrounds */
   --bg-main: #F9FAFB;             /* Aesthetic Soft */
+  --bg-hero: linear-gradient(180deg, #f7f9fc 0%, #eef3fb 55%, #e6eef9 100%);
   --bg-card: rgba(255, 255, 255, 0.85);
   --bg-muted: #EFF6FF;
 
@@ -178,6 +179,7 @@ a:hover {
    ================================ */
 .dark {
   --bg-main: #0f172a;
+  --bg-hero: linear-gradient(180deg, #0f172a 0%, #111e32 55%, #16243d 100%);
   --bg-card: #1e293b;
   --bg-muted: #1e293b;
 
@@ -200,6 +202,7 @@ a:hover {
 /* Also support data-theme for backwards compatibility */
 [data-theme="dark"] {
   --bg-main: #0f172a;
+  --bg-hero: linear-gradient(180deg, #0f172a 0%, #111e32 55%, #16243d 100%);
   --bg-card: #1e293b;
   --bg-muted: #1e293b;
 
