@@ -25,6 +25,7 @@ import {
 import { Textarea } from "../components/ui/textarea";
 import { DarkModeToggle } from "./darkmode";
 import { Education } from "./Education";
+import { LoadingScreen } from "./LoadingScreen";
 import { Technical } from "./Technical";
 
 const links = [
@@ -82,6 +83,7 @@ function SectionHeading({ index, title, subtitle }: { index: string; title: stri
 }
 
 export function Portfolio() {
+  const [isLoading, setIsLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [formStatus, setFormStatus] = useState("");
 
@@ -110,7 +112,9 @@ export function Portfolio() {
   }
 
   return (
-    <div className="portfolio-shell">
+    <>
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      <div className="portfolio-shell">
       <header className={scrolled ? "site-header site-header-compact" : "site-header"}>
         <a className="wordmark" href="#top" aria-label="Gavindu Rushela, home">
           GRE<span>.</span>
@@ -265,5 +269,6 @@ export function Portfolio() {
         <div><a href="https://github.com/rushela" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/rushela-ekanayaka-357072345" target="_blank" rel="noreferrer">LinkedIn</a><a href="mailto:gavindurushel@gmail.com">Email</a></div>
       </footer>
     </div>
+  </>
   );
 }

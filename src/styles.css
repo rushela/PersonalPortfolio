@@ -2094,3 +2094,409 @@ footer>div:last-child {
     grid-row: 3;
   }
 }
+
+/* =======================================================
+   Uncommon Nordic Engineering Loading Screen
+   ======================================================= */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Split-shutter reveal panels */
+.loader-shutter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--background);
+  z-index: 1;
+  transition: transform 0.68s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.loader-shutter-top {
+  top: 0;
+  height: 50.5%;
+  border-bottom: 1px solid color-mix(in oklab, var(--line) 45%, transparent);
+  transform-origin: top center;
+}
+
+.loader-shutter-bottom {
+  bottom: 0;
+  height: 50.5%;
+  border-top: 1px solid color-mix(in oklab, var(--line) 45%, transparent);
+  transform-origin: bottom center;
+}
+
+/* On completion: shutter doors split open */
+.loader-overlay.loader-exiting .loader-shutter-top {
+  transform: translateY(-100%);
+}
+
+.loader-overlay.loader-exiting .loader-shutter-bottom {
+  transform: translateY(100%);
+}
+
+.loader-overlay.loader-exiting .loader-core,
+.loader-overlay.loader-exiting .loader-hud-frame {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Laser horizontal split flare beam */
+.loader-horizon-beam {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary) 20%, oklch(0.96 0.14 85) 50%, var(--primary) 80%, transparent);
+  transform: translateY(-50%) scaleX(0);
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.loader-overlay.loader-exiting .loader-horizon-beam {
+  transform: translateY(-50%) scaleX(1);
+  opacity: 1;
+  box-shadow: 0 0 24px 4px color-mix(in oklab, var(--primary) 80%, transparent);
+}
+
+/* Telemetry HUD corner brackets */
+.loader-hud-frame {
+  position: absolute;
+  inset: 20px;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .loader-hud-frame {
+    inset: 32px;
+  }
+}
+
+.hud-corner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+  opacity: 0.85;
+}
+
+.hud-crosshair {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.hud-tl { top: 0; left: 0; }
+.hud-tr { top: 0; right: 0; }
+.hud-bl { bottom: 0; left: 0; }
+.hud-br { bottom: 0; right: 0; }
+
+.hud-status-led {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: oklch(0.75 0.22 145);
+  box-shadow: 0 0 8px oklch(0.75 0.22 145);
+  animation: hudLedPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes hudLedPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Core display */
+.loader-core {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 460px;
+  width: 90%;
+  transition: all 0.3s ease;
+}
+
+/* Animated Pendant Bulb */
+.loader-lamp-wrap {
+  position: relative;
+  width: 140px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.loader-lamp-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: loaderLampSway 4s ease-in-out infinite alternate;
+  transform-origin: 80px 0px;
+}
+
+@keyframes loaderLampSway {
+  0% { transform: rotate(-1.5deg); }
+  100% { transform: rotate(1.5deg); }
+}
+
+.loader-svg-mount {
+  fill: var(--muted-foreground);
+}
+
+.loader-svg-wire {
+  stroke: var(--line);
+  stroke-width: 1.6;
+}
+
+.loader-svg-pulse {
+  animation: wirePulseMove 1.2s linear infinite;
+}
+
+@keyframes wirePulseMove {
+  0% { stroke-dashoffset: 63; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.loader-svg-socket {
+  fill: var(--surface-raised);
+  stroke: var(--border);
+  stroke-width: 1.2;
+}
+
+.loader-svg-socket-groove {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.loader-svg-shade {
+  fill: var(--surface-raised);
+  stroke: var(--border);
+  stroke-width: 1.4;
+}
+
+.loader-svg-glass {
+  fill: color-mix(in oklab, var(--card) 45%, transparent);
+  stroke: color-mix(in oklab, var(--foreground) 35%, transparent);
+  stroke-width: 1.6;
+}
+
+.loader-svg-lead {
+  stroke: var(--border);
+  stroke-width: 1.2;
+}
+
+.loader-svg-rope {
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.loader-svg-knob {
+  fill: var(--primary);
+  filter: drop-shadow(0 0 4px var(--primary));
+}
+
+.filament-surge {
+  animation: filamentMicroFlicker 0.15s ease-in-out 2;
+}
+
+@keyframes filamentMicroFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+/* Dark mode overrides for bulb outlines */
+.dark .loader-svg-mount {
+  fill: #ffffff;
+}
+
+.dark .loader-svg-wire {
+  stroke: #ffffff;
+  opacity: 0.85;
+}
+
+.dark .loader-svg-socket,
+.dark .loader-svg-shade {
+  fill: color-mix(in oklab, var(--card) 90%, #ffffff);
+  stroke: #ffffff;
+  stroke-width: 1.2;
+}
+
+.dark .loader-svg-socket-groove {
+  stroke: #ffffff;
+}
+
+.dark .loader-svg-glass {
+  stroke: #ffffff;
+  fill: color-mix(in oklab, var(--card) 30%, transparent);
+}
+
+.dark .loader-svg-lead {
+  stroke: color-mix(in oklab, #ffffff 60%, transparent);
+}
+
+.dark .loader-svg-rope {
+  stroke: #ffffff;
+  opacity: 0.75;
+}
+
+/* Typographic identity */
+.loader-branding {
+  margin-bottom: 22px;
+}
+
+.loader-wordmark {
+  font-family: var(--font-sans);
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--foreground);
+  line-height: 1;
+}
+
+.loader-char {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.loader-dot {
+  color: var(--primary);
+}
+
+.loader-name {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: 8px 0 3px;
+}
+
+.loader-role {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Monospace digital telemetry gauge */
+.loader-gauge {
+  width: 100%;
+  max-width: 320px;
+}
+
+.loader-counter-row {
+  font-family: var(--font-mono);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--foreground);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 3px;
+}
+
+.loader-counter-digits {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.loader-counter-unit {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.loader-track {
+  width: 100%;
+  height: 3px;
+  background: color-mix(in oklab, var(--line) 55%, transparent);
+  border-radius: 999px;
+  position: relative;
+  overflow: visible;
+  margin: 14px 0 10px;
+}
+
+.loader-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--line), var(--primary) 70%, oklch(0.96 0.14 85) 100%);
+  border-radius: 999px;
+  position: relative;
+  box-shadow: 0 0 10px color-mix(in oklab, var(--primary) 65%, transparent);
+}
+
+.loader-fill-head {
+  position: absolute;
+  right: -3px;
+  top: -2.5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px 2px var(--primary);
+}
+
+.loader-terminal-line {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 18px;
+}
+
+.terminal-prompt {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.terminal-text {
+  text-transform: uppercase;
+}
+
+/* Skip hint */
+.loader-skip-hint {
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+  opacity: 0.45;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.loader-skip-hint:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
