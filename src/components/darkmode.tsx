@@ -9,7 +9,7 @@ export function DarkModeToggle({
   variant = "below-navbar",
   className = "",
 }: DarkModeToggleProps) {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [isPulling, setIsPulling] = useState(false);
   const [isSwinging, setIsSwinging] = useState(false);
@@ -20,13 +20,11 @@ export function DarkModeToggle({
 
   useEffect(() => {
     const saved = localStorage.getItem("darkMode");
-    let isDark = false;
+    let isDark = true;
     if (saved !== null) {
       isDark = saved === "true";
     } else {
-      isDark =
-        document.documentElement.classList.contains("dark") ||
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      isDark = true;
     }
 
     setDarkMode(isDark);
