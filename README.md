@@ -1,4 +1,4 @@
-<img width="2940" height="15990" alt="screencapture-localhost-5173-2026-10-08-11_54_49" src="https://github.com/user-attachments/assets/6ee655e3-fc87-4524-9e33-fe9121a52796" /># Personal Portfolio
+# Personal Portfolio
 
 This is my personal portfolio website, built with React, TypeScript, Vite, and Tailwind CSS. It features a clean, single‐page layout with the following sections:
 
@@ -14,5 +14,6 @@ All static assets (profile image, project screenshots, CV PDF) live in `public/a
 
 
 2nd UI update
-<img width="2143" height="11655" alt="image" src="https://github.com/user-attachments/assets/00b2bf27-c501-46b9-b280-956bd63da63a" />
+
+#<img width="2143" height="11655" alt="image" src="https://github.com/user-attachments/assets/00b2bf27-c501-46b9-b280-956bd63da63a" />
 
