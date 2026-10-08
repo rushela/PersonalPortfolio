@@ -1,33 +1,14 @@
-# Robots.txt for Gavindu Rushela Ekanayaka Portfolio
-# https://rushela.vercel.app/
-
-User-agent: *
-Allow: /
-
-# Sitemap location
-Sitemap: https://rushela.vercel.app/sitemap.xml
-
-# Block access to API routes
-Disallow: /api/
-
-# Allow all search engine bots
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
+User-agent: Twitterbot
 Allow: /
 
-User-agent: DuckDuckBot
+User-agent: facebookexternalhit
 Allow: /
 
-User-agent: Baiduspider
+User-agent: *
 Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-# Crawl-delay for polite crawling
-Crawl-delay: 1
