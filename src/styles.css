@@ -234,13 +234,13 @@ em {
 .lamp-toggle-below-navbar {
   position: absolute;
   top: calc(100% - 1px);
-  right: 32px;
+  right: 28px;
   z-index: 45;
   display: inline-flex;
   align-items: flex-start;
   justify-content: center;
-  width: 60px;
-  height: 114px;
+  width: 72px;
+  height: 104px;
   user-select: none;
   pointer-events: none;
 }
@@ -293,10 +293,10 @@ em {
 }
 
 .lamp-svg {
-  width: 54px;
-  height: 106px;
+  width: 68px;
+  height: 94px;
   overflow: visible;
-  transform-origin: 26px 0px;
+  transform-origin: 80px 0px;
   filter: drop-shadow(0 3px 8px color-mix(in oklab, var(--foreground) 9%, transparent));
 }
 
@@ -345,7 +345,14 @@ em {
 }
 
 .lamp-socket {
-  fill: var(--muted-foreground);
+  fill: var(--surface-raised);
+  stroke: var(--border);
+  stroke-width: 1.2;
+}
+
+.lamp-socket-groove {
+  stroke: var(--border);
+  stroke-width: 1;
 }
 
 .lamp-socket-ring {
@@ -354,36 +361,68 @@ em {
 }
 
 .lamp-shade {
-  fill: var(--card);
+  fill: var(--surface-raised);
   stroke: var(--border);
-  stroke-width: 1.5;
+  stroke-width: 1.4;
   transition: fill 0.25s ease, stroke 0.25s ease;
 }
 
 .lamp-shade-rim {
-  fill: var(--card);
+  fill: var(--surface-raised);
   stroke: var(--border);
-  stroke-width: 1.5;
+  stroke-width: 1.4;
   transition: fill 0.25s ease, stroke 0.25s ease;
 }
 
 .lamp-bulb-lit {
   fill: oklch(0.92 0.22 88);
   stroke: oklch(0.98 0.1 88);
-  stroke-width: 1;
+  stroke-width: 1.6;
   transition: fill 0.25s ease;
 }
 
 .lamp-bulb-unlit {
-  fill: color-mix(in oklab, var(--card) 60%, transparent);
+  fill: color-mix(in oklab, var(--card) 45%, transparent);
+  stroke: color-mix(in oklab, var(--foreground) 35%, transparent);
+  stroke-width: 1.6;
+  transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+.lamp-lead {
   stroke: var(--border);
-  stroke-width: 1;
-  transition: fill 0.25s ease;
+  stroke-width: 1.2;
 }
 
 .lamp-filament {
   stroke: var(--muted-foreground);
-  opacity: 0.75;
+  stroke-width: 1.6;
+  opacity: 0.8;
+  transition: stroke 0.2s ease;
+}
+
+.lamp-filament-lit {
+  stroke: oklch(0.96 0.14 85);
+  stroke-width: 2.2;
+  opacity: 1;
+  filter: drop-shadow(0 0 6px oklch(0.96 0.14 85));
+}
+
+.lamp-light-halo {
+  pointer-events: none;
+  animation: lampHaloPulse 3s infinite alternate ease-in-out;
+  transform-origin: 80px 148px;
+}
+
+@keyframes lampHaloPulse {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
 }
 
 .lamp-light-cone {
@@ -473,13 +512,19 @@ em {
 
 .dark .lamp-wire {
   stroke: #ffffff;
-  stroke-width: 1.8;
-  opacity: 1;
+  stroke-width: 1.6;
+  opacity: 0.9;
 }
 
 .dark .lamp-socket {
-  fill: #ffffff;
-  opacity: 0.95;
+  fill: color-mix(in oklab, var(--card) 90%, #ffffff);
+  stroke: #ffffff;
+  stroke-width: 1.2;
+}
+
+.dark .lamp-socket-groove {
+  stroke: #ffffff;
+  stroke-width: 1;
 }
 
 .dark .lamp-socket-ring {
@@ -488,38 +533,43 @@ em {
 }
 
 .dark .lamp-shade {
+  fill: color-mix(in oklab, var(--card) 90%, #ffffff);
   stroke: #ffffff;
-  stroke-width: 1.8;
-  fill: color-mix(in oklab, var(--card) 85%, rgba(255, 255, 255, 0.12));
+  stroke-width: 1.4;
 }
 
 .dark .lamp-shade-rim {
+  fill: color-mix(in oklab, var(--card) 90%, #ffffff);
   stroke: #ffffff;
-  stroke-width: 1.8;
-  fill: color-mix(in oklab, var(--card) 85%, rgba(255, 255, 255, 0.12));
+  stroke-width: 1.4;
 }
 
 .dark .lamp-bulb-unlit {
   stroke: #ffffff;
   stroke-width: 1.6;
-  fill: rgba(255, 255, 255, 0.08);
+  fill: color-mix(in oklab, var(--card) 30%, transparent);
+}
+
+.dark .lamp-lead {
+  stroke: color-mix(in oklab, #ffffff 60%, transparent);
+  stroke-width: 1.2;
 }
 
 .dark .lamp-filament {
   stroke: #ffffff;
-  stroke-width: 1.4;
+  stroke-width: 1.5;
   opacity: 0.95;
 }
 
 .dark .lamp-pull-rope {
   stroke: #ffffff;
-  stroke-width: 1.6;
-  opacity: 1;
+  stroke-width: 1.4;
+  opacity: 0.85;
 }
 
 .dark .lamp-pull-knob {
   stroke: #ffffff;
-  stroke-width: 1.6;
+  stroke-width: 1.4;
   fill: var(--primary);
   filter: drop-shadow(0 2px 8px color-mix(in oklab, var(--primary) 70%, transparent));
 }
@@ -1938,13 +1988,13 @@ footer>div:last-child {
 
   .lamp-toggle-below-navbar {
     right: 18px;
-    width: 48px;
-    height: 94px;
+    width: 54px;
+    height: 80px;
   }
 
   .lamp-toggle-below-navbar .lamp-svg {
-    width: 44px;
-    height: 90px;
+    width: 50px;
+    height: 70px;
   }
 
   .lamp-toggle-below-navbar .lamp-hint-text {
